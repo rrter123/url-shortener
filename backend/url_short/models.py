@@ -3,6 +3,7 @@ import uuid
 import random
 import string
 
+
 class FailedShorteningGenerationException(BaseException):
     ...
 
@@ -35,15 +36,17 @@ class ShortenedLink(models.Model):
     def string_has_collision(self, random_string: str) -> bool:
         return ShortenedLink.objects.filter(short_link_suffix=random_string).exists()
 
-    
-
     def __str__(self) -> str:
         return f'{self.short_link_suffix}, {self.full_link}'
 
 
 class LinkUnshortening(models.Model):
     time = models.DateTimeField(auto_now=True)
-    shortened_link = models.ForeignKey(ShortenedLink, related_name='unshortenings')
+    shortened_link = models.ForeignKey(
+        ShortenedLink,
+        related_name='unshortenings',
+        on_delete=models.CASCADE
+    )
 
     def __str__(self) -> str:
         return f'{self.time}, {self.shortened_link}'
