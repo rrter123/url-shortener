@@ -1,5 +1,6 @@
 from url_short.models import ShortenedLink, LinkUnshortening
 import pytest
+import datetime
 
 #todo fixes
 
@@ -48,9 +49,13 @@ def test_get_unshortenings(client):
 def test_get_unshortenings_by_date(client):
     test_link = 'https://test.com'
     sl = ShortenedLink.objects.create(full_link=test_link)
-    lu = LinkUnshortening.objects.create(shortened_link=sl, time='2022-02-26T15:02:32')
-    lu = LinkUnshortening.objects.create(shortened_link=sl, time='2022-02-25T15:02:32')
-    response = client.get(f'/url-short/unshortening/{sl.id}/', {'date': '2022-02-26'})
+    lu = LinkUnshortening.objects.create(shortened_link=sl)
+    lu_2 = LinkUnshortening.objects.create(shortened_link=sl)
+    # bypass save
+    LinkUnshortening.objects.filter(id=lu.id).update(time=datetime.datetime(2022, 2, 23, 17, 34, 14, 464503, tzinfo=datetime.timezone.utc))
+    response = client.get(f'/url-short/unshortening/{sl.id}/', {'date': '2022-02-23'})
+    print(LinkUnshortening.objects.all())
+    print(response.data)
     assert response.status_code == 200
     assert len(response.data) == 1
     assert dict(response.data[0])['id'] == lu.id

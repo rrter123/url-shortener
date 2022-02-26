@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'url_short',
     'rest_framework',
     'django_filters',
+    'django_extensions',
 ]
 
 MIDDLEWARE = [

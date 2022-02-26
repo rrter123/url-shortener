@@ -8,6 +8,7 @@ from rest_framework.response import Response
 from url_short.api.serializers import (LinkUnshorteningSerializer,
                                        ShortenedLinkSerializer)
 from url_short.models import LinkUnshortening, ShortenedLink
+from url_short.api.filtersets import LinkUnshorteningFilter
 
 
 class ShortenedLinkViewSet(mixins.CreateModelMixin, mixins.RetrieveModelMixin, viewsets.GenericViewSet):
@@ -31,8 +32,10 @@ class LinkUnshorteningViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
     serializer_class = LinkUnshorteningSerializer
     queryset = LinkUnshortening.objects.all()
     filter_backends = [DjangoFilterBackend]
+    filterset_class = LinkUnshorteningFilter
 
     def get_queryset(self):
         qs = super().get_queryset()
         sl_id = self.kwargs['short_link_id']
+        print('?', qs.filter(shortened_link__id=sl_id))
         return qs.filter(shortened_link__id=sl_id)
