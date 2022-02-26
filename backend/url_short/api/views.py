@@ -5,10 +5,10 @@ from rest_framework import mixins, viewsets
 from rest_framework.decorators import action
 from rest_framework.request import Request
 from rest_framework.response import Response
+from url_short.api.filtersets import LinkUnshorteningFilter
 from url_short.api.serializers import (LinkUnshorteningSerializer,
                                        ShortenedLinkSerializer)
 from url_short.models import LinkUnshortening, ShortenedLink
-from url_short.api.filtersets import LinkUnshorteningFilter
 
 
 class ShortenedLinkViewSet(mixins.CreateModelMixin, mixins.RetrieveModelMixin, viewsets.GenericViewSet):

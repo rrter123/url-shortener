@@ -1,9 +1,12 @@
 import random
 import string
+
 from url_short.models import ShortenedLink
+
 
 class FailedShorteningGenerationException(BaseException):
     ...
+
 
 class ShorteningService:
     DEFAULT_SUFFIX_LENGTH = 5
