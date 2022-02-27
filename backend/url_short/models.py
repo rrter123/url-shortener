@@ -31,7 +31,7 @@ class ShortenedLink(models.Model):
 
     def generate_random_string(self, length: int) -> str:
         # Move this somewhere else
-        return ''.join(random.choices(string.ascii_uppercase + string.digits, k=length))
+        return ''.join(random.choices(string.ascii_letters + string.digits, k=length))
 
     def string_has_collision(self, random_string: str) -> bool:
         return ShortenedLink.objects.filter(short_link_suffix=random_string).exists()

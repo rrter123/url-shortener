@@ -1,8 +1,12 @@
-from url_short.models import ShortenedLink
+from unittest import mock
+
 import pytest
+from url_short.models import ShortenedLink
 
 
 @pytest.mark.django_db
-def test_shortening_model():
+@mock.patch.object(ShortenedLink, 'generate_random_string', return_value='test123')
+def test_shortening_model(generate_mock):
     s = ShortenedLink.objects.create(full_link='https://test.com')
-    assert s.short_link_suffix != ''
+    generate_mock.assert_called_once()
+    assert s.short_link_suffix == 'test123'
