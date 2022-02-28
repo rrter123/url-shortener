@@ -7,13 +7,13 @@ import { ShortLinkStatisticsComponent } from './short-link-statistics/short-link
 
 
 @NgModule({
-  declarations: [
-    ShortLinkGeneratorComponent,
-    UnshortenerComponent,
-    ShortLinkStatisticsComponent
-  ],
-  imports: [
-    CommonModule
-  ]
+    declarations: [
+        ShortLinkGeneratorComponent,
+        UnshortenerComponent,
+        ShortLinkStatisticsComponent
+    ],
+    imports: [
+        CommonModule
+    ]
 })
 export class UrlShortenerModule { }
