@@ -8,6 +8,7 @@ import { UrlShortenerModule } from './url-shortener/url-shortener.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NbThemeModule, NbLayoutModule } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
     declarations: [
@@ -18,10 +19,11 @@ import { NbEvaIconsModule } from '@nebular/eva-icons';
         HttpClientModule,
         AppRoutingModule,
         UrlShortenerModule,
+        SharedModule,
         BrowserAnimationsModule,
         NbThemeModule.forRoot({ name: 'dark' }),
         NbLayoutModule,
-        NbEvaIconsModule
+        NbEvaIconsModule,
     ],
     providers: [],
     bootstrap: [AppComponent]

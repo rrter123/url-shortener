@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './header/header.component';
+import { NbIconModule } from '@nebular/theme';
 
 
 
@@ -9,7 +10,9 @@ import { HeaderComponent } from './header/header.component';
     HeaderComponent
   ],
     imports: [
-        CommonModule
-    ]
+        CommonModule,
+        NbIconModule,
+    ],
+    exports: [HeaderComponent]
 })
 export class SharedModule { }
