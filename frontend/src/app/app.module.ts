@@ -4,6 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { UrlShortenerModule } from './url-shortener/url-shortener.module';
 
 @NgModule({
     declarations: [
@@ -12,7 +13,8 @@ import { AppComponent } from './app.component';
     imports: [
         BrowserModule,
         HttpClientModule,
-        AppRoutingModule
+        AppRoutingModule,
+        UrlShortenerModule
     ],
     providers: [],
     bootstrap: [AppComponent]

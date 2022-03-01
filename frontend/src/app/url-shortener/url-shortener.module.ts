@@ -14,6 +14,11 @@ import { ShortLinkStatisticsComponent } from './short-link-statistics/short-link
     ],
     imports: [
         CommonModule
-    ]
+    ],
+    exports: [
+        ShortLinkGeneratorComponent,
+        UnshortenerComponent,
+        ShortLinkStatisticsComponent
+    ],
 })
 export class UrlShortenerModule { }
