@@ -1,1 +1,14 @@
-<p>short-link-generator works!</p>
+<div class="central-div ">
+    <nb-card>
+        <nb-card-header>Input the url that you want to have shortened</nb-card-header>
+        <nb-card-body>
+            <form id="urlForm" #urlForm="ngForm" (ngSubmit)="onSubmit(urlForm)">
+                <input type="text" nbInput placeholder="Paste link here" style="width: 100%" name="link" ngModel
+                    required>
+            </form>
+        </nb-card-body>
+        <nb-card-footer>
+            <button form="urlForm" nbButton [disabled]="!urlForm.form.valid">Shorten</button>
+        </nb-card-footer>
+    </nb-card>
+</div>

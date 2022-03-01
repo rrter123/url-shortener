@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { map, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -14,6 +15,17 @@ export class BackendService {
         const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
         const options = { headers: headers, params: queryParams, observe: 'response' as 'body' }
         return this.http.get(fullUrl, options)
+    }
+
+    public post<T>(url: string, data?: { [name: string]: any }): Observable<HttpResponse<T>> {
+        const fullUrl = this.createUrl(url);
+        console.log(fullUrl)
+        const headers = new HttpHeaders({ 
+            'Content-Type': 'application/json',
+            
+        });
+        const options = { headers: headers, observe: 'response' as 'body' }
+        return this.http.post<HttpResponse<T>>(fullUrl, data, options)
     }
 
     private createUrl(url: string): string {
