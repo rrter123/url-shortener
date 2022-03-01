@@ -5,6 +5,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { UrlShortenerModule } from './url-shortener/url-shortener.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NbThemeModule, NbLayoutModule } from '@nebular/theme';
+import { NbEvaIconsModule } from '@nebular/eva-icons';
 
 @NgModule({
     declarations: [
@@ -14,7 +17,11 @@ import { UrlShortenerModule } from './url-shortener/url-shortener.module';
         BrowserModule,
         HttpClientModule,
         AppRoutingModule,
-        UrlShortenerModule
+        UrlShortenerModule,
+        BrowserAnimationsModule,
+        NbThemeModule.forRoot({ name: 'cosmic' }),
+        NbLayoutModule,
+        NbEvaIconsModule
     ],
     providers: [],
     bootstrap: [AppComponent]
