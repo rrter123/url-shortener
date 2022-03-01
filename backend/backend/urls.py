@@ -19,5 +19,5 @@ from url_short.api.urls import urlpatterns as url_short_urlpatterns
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('url-short/', include(url_short_urlpatterns))
+    path('api/url-short/', include(url_short_urlpatterns))
 ]
