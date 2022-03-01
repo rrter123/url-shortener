@@ -19,7 +19,7 @@ import { NbEvaIconsModule } from '@nebular/eva-icons';
         AppRoutingModule,
         UrlShortenerModule,
         BrowserAnimationsModule,
-        NbThemeModule.forRoot({ name: 'cosmic' }),
+        NbThemeModule.forRoot({ name: 'dark' }),
         NbLayoutModule,
         NbEvaIconsModule
     ],
