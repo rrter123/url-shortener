@@ -9,8 +9,8 @@
             <br>
             <nb-card *ngIf="shortenedLink" style="margin-bottom: 10px;">
                 <nb-card-body>
-                    Short link suffix: {{shortenedLink.short_link_suffix}} <br>
-                    Link ID: {{shortenedLink.id}} <br>
+                    Short link suffix: {{createShortUrl(shortenedLink['short_link_suffix'])}} <br>
+                    Link ID: {{createManagerUrl(shortenedLink.id)}} <br>
                 </nb-card-body>
             </nb-card>
         </nb-card-body>

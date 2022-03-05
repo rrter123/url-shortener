@@ -16,7 +16,7 @@ export class UnshortenerComponent implements OnInit {
     shortSuffix: string;
     displayText = ''
 
-    constructor(private route: ActivatedRoute, private backendService: BackendService, private router: Router) { }
+    constructor(private route: ActivatedRoute, private backendService: BackendService) { }
 
     ngOnInit(): void {
         const myObserver = {
