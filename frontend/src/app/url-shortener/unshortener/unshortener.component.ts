@@ -13,7 +13,6 @@ import { ShortenedLink } from '../shortened-link';
 })
 export class UnshortenerComponent implements OnInit {
     subscription$: Subscription;
-    shortSuffix: string;
     displayText = ''
 
     constructor(private route: ActivatedRoute, private backendService: BackendService) { }
@@ -27,7 +26,7 @@ export class UnshortenerComponent implements OnInit {
             map((params: ParamMap) => String(params.get('id'))),
             switchMap(shortSuffix => this.backendService.get<HttpResponse<ShortenedLink>>(`/api/url-short/link/${shortSuffix}/unshorten/`)),
             map((shortenedLinkRes: HttpResponse<ShortenedLink>) => shortenedLinkRes.body ? String(shortenedLinkRes.body['full_link']) : null),
-            tap(val => this.displayText = 'Please wait 3 seconds'),
+            tap(val => this.displayText = 'Please wait 3 seconds'), // TODO: switch around order
             delay(1000),
             tap(val => this.displayText = 'Please wait 2 seconds'),
             delay(1000),

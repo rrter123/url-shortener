@@ -6,7 +6,7 @@ import { UnshortenerComponent } from './url-shortener/unshortener/unshortener.co
 
 const routes: Routes = [
     {path: 'us/:id', component: UnshortenerComponent},
-    {path: 'manage', component: ShortLinkStatisticsComponent},
+    {path: 'manage/:id', component: ShortLinkStatisticsComponent},
     {path: '', component: ShortLinkGeneratorComponent}
 ];
 

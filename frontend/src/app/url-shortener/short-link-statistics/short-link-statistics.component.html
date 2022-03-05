@@ -1,1 +1,19 @@
-<p>short-link-statistics works!</p>
+<div class="container">
+<nb-card class="card-left">
+    <nb-card-header>
+        
+        <input nbInput placeholder="Pick Date" [nbDatepicker]="formcontrol" [formControl]="dateFormControl"> 
+        <nb-datepicker #formcontrol></nb-datepicker>
+        <div style="margin-top: 10px">Clicks count: {{unshortenings?.length}}</div>
+    </nb-card-header>
+        <nb-list>
+            <nb-list-item *ngFor="let us of unshortenings">
+                {{us.time}}
+            </nb-list-item>
+        </nb-list>
+</nb-card>
+
+<nb-card class="card-right">
+    display some nice colorful graphs XD
+</nb-card>
+</div>
