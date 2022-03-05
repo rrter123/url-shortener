@@ -1,3 +1,4 @@
+import { HttpResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { delay, map, Observable, Subscription, switchMap, tap, timer } from 'rxjs';
@@ -18,24 +19,30 @@ export class UnshortenerComponent implements OnInit {
     constructor(private route: ActivatedRoute, private backendService: BackendService, private router: Router) { }
 
     ngOnInit(): void {
+        const myObserver = {
+            next: (fullLink: string | null) => { if (fullLink) { this.redirect(fullLink) } },
+            error: (error: any) => { this.displayText = 'Link not found' },
+        }
         this.subscription$ = this.route.paramMap.pipe(
             map((params: ParamMap) => String(params.get('id'))),
-            switchMap(shortSuffix => this.backendService.get<ShortenedLink>(`/api/url-short/link/unshorten/${shortSuffix}/`)),
-            map((shortenedLink: ShortenedLink) => shortenedLink['full_link']),
+            switchMap(shortSuffix => this.backendService.get<HttpResponse<ShortenedLink>>(`/api/url-short/link/${shortSuffix}/unshorten/`)),
+            map((shortenedLinkRes: HttpResponse<ShortenedLink>) => shortenedLinkRes.body ? String(shortenedLinkRes.body['full_link']) : null),
             tap(val => this.displayText = 'Please wait 3 seconds'),
-            delay(1),
+            delay(1000),
             tap(val => this.displayText = 'Please wait 2 seconds'),
-            delay(1),
+            delay(1000),
             tap(val => this.displayText = 'Please wait 1 seconds'),
-            delay(1),
-        ).subscribe({
-            next: fullLink => this.router.navigate([fullLink]),
-            error: error => {this.displayText = 'Link not found'},
-        })
+            delay(1000),
+        ).subscribe(myObserver);
     }
 
-    ngOnDestroy() {
-        this.subscription$.unsubscribe()
+    redirect(fullLink: string): void {
+        this.subscription$.unsubscribe();
+        window.location.href = fullLink;
+    }
+
+    ngOnDestroy(): void {
+        this.subscription$.unsubscribe();
     }
 
 }
