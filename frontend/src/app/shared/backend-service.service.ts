@@ -10,11 +10,11 @@ export class BackendService {
 
     constructor(private http: HttpClient) { }
 
-    public get(url: string, queryParams?: { [name: string]: any }) {
+    public get<T>(url: string, queryParams?: { [name: string]: any }) {
         const fullUrl = this.createUrl(url);
         const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
         const options = { headers: headers, params: queryParams, observe: 'response' as 'body' }
-        return this.http.get(fullUrl, options)
+        return this.http.get<T>(fullUrl, options)
     }
 
     public post<T>(url: string, data?: { [name: string]: any }): Observable<HttpResponse<T>> {

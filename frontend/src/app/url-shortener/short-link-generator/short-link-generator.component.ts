@@ -3,12 +3,8 @@ import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { map } from 'rxjs';
 import { BackendService } from 'src/app/shared/backend-service.service';
+import { ShortenedLink } from '../shortened-link';
 
-interface Link {
-    short_link_suffix: string,
-    id: string,
-    full_link: string,
-}
 
 @Component({
     selector: 'app-short-link-generator',
@@ -16,16 +12,16 @@ interface Link {
     styleUrls: ['./short-link-generator.component.scss']
 })
 export class ShortLinkGeneratorComponent {
-    shortenedLink?: Link;
+    shortenedLink?: ShortenedLink;
 
     constructor(private backendService: BackendService) { }
 
     onSubmit(form: NgForm) {
-        this.backendService.post<Link>('/api/url-short/link/', {'full_link': form.value.link}).pipe(
+        this.backendService.post<ShortenedLink>('/api/url-short/link/', { 'full_link': form.value.link }).pipe(
             map(httpResponse => httpResponse.body)
         ).subscribe({
             next: next => next ? this.shortenedLink = next : null,
-            error: error  => console.error(error),
+            error: error => console.error(error),
         })
     }
 
