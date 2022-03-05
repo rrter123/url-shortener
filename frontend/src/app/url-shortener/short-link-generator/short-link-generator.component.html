@@ -6,6 +6,13 @@
                 <input type="text" nbInput placeholder="Paste link here" style="width: 100%" name="link" ngModel
                     required>
             </form>
+            <br>
+            <nb-card *ngIf="shortenedLink" style="margin-bottom: 10px;">
+                <nb-card-body>
+                    Short link suffix: {{shortenedLink.short_link_suffix}} <br>
+                    Link ID: {{shortenedLink.id}} <br>
+                </nb-card-body>
+            </nb-card>
         </nb-card-body>
         <nb-card-footer>
             <button form="urlForm" nbButton [disabled]="!urlForm.form.valid">Shorten</button>

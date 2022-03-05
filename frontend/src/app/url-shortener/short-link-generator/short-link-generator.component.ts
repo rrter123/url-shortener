@@ -16,6 +16,7 @@ interface Link {
     styleUrls: ['./short-link-generator.component.scss']
 })
 export class ShortLinkGeneratorComponent {
+    shortenedLink?: Link;
 
     constructor(private backendService: BackendService) { }
 
@@ -23,7 +24,7 @@ export class ShortLinkGeneratorComponent {
         this.backendService.post<Link>('/api/url-short/link/', {'full_link': form.value.link}).pipe(
             map(httpResponse => httpResponse.body)
         ).subscribe({
-            next: next => {console.log(next)},
+            next: next => next ? this.shortenedLink = next : null,
             error: error  => console.error(error),
         })
     }
