@@ -11,14 +11,14 @@ export class BackendService {
     constructor(private http: HttpClient) { }
 
     public get<T>(url: string, queryParams?: { [name: string]: any }) {
-        const fullUrl = this.createUrl(url);
+        const fullUrl = this.createBackendUrl(url);
         const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
         const options = { headers: headers, params: queryParams, observe: 'response' as 'body' }
         return this.http.get<T>(fullUrl, options)
     }
 
     public post<T>(url: string, data?: { [name: string]: any }): Observable<HttpResponse<T>> {
-        const fullUrl = this.createUrl(url);
+        const fullUrl = this.createBackendUrl(url);
         console.log(fullUrl)
         const headers = new HttpHeaders({ 
             'Content-Type': 'application/json',
@@ -28,7 +28,7 @@ export class BackendService {
         return this.http.post<HttpResponse<T>>(fullUrl, data, options)
     }
 
-    private createUrl(url: string): string {
-        return url.includes(environment.url) ? url : environment.url + url
+    private createBackendUrl(url: string): string {
+        return url.includes(environment.backendUrl) ? url : environment.backendUrl + url
     }
 }
