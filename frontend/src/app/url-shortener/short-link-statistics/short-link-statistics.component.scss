@@ -1,7 +1,7 @@
 .container {
     display: grid;
     grid-template-columns: min-content 10px auto;
-    grid-template-rows: 100%;
+    grid-template-rows: 80vh;
 }
 
 .card-left {
@@ -16,5 +16,5 @@
 
 .card-right {
     grid-column-start: 3;
-
+    
 }

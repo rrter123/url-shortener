@@ -9,6 +9,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NbThemeModule, NbLayoutModule, NbDatepickerModule } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { SharedModule } from './shared/shared.module';
+import { NgxEchartsModule } from 'ngx-echarts';
+import { DateFnsModule } from 'ngx-date-fns';
 
 @NgModule({
     declarations: [
@@ -25,6 +27,10 @@ import { SharedModule } from './shared/shared.module';
         NbLayoutModule,
         NbEvaIconsModule,
         NbDatepickerModule.forRoot(),
+        NgxEchartsModule.forRoot({
+            echarts: () => import('echarts')
+          }),
+        DateFnsModule.forRoot(),
     ],
     providers: [],
     bootstrap: [AppComponent]

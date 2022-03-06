@@ -8,12 +8,12 @@
     </nb-card-header>
         <nb-list>
             <nb-list-item *ngFor="let us of unshortenings">
-                {{us.time}}
+                {{displayTime(us.time)}}
             </nb-list-item>
         </nb-list>
 </nb-card>
 
 <nb-card class="card-right">
-    Echarts this
+    <app-short-link-statistics-chart></app-short-link-statistics-chart>
 </nb-card>
 </div>

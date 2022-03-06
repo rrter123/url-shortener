@@ -2,13 +2,13 @@ import { HttpResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { ActivatedRoute, ParamMap } from '@angular/router';
-import { combineLatest, concatMap, map, Observable, startWith, Subscription, switchMap, tap } from 'rxjs';
+import { format, parseISO } from 'date-fns';
+import { combineLatest, map, startWith, Subscription, switchMap } from 'rxjs';
 import { BackendService } from 'src/app/shared/backend-service.service';
-import { ShortenedLink } from '../shortened-link';
 
 interface Unshortening {
     id: number;
-    time: Date; //datetime
+    time: string; //datetime
     shortened_link: string;
 }
 
@@ -35,16 +35,12 @@ export class ShortLinkStatisticsComponent implements OnInit {
     }
 
     fetchUnshortenings(shortLinkId: string, date: any) { // TODO: fix date any conflicting with formControl obseraable being unknown
-        const queryParams = date ? { date: this.getDateString(date) } : {};
+        const queryParams = date ? { date: format(date, 'yyyy-MM-dd') } : {};
         return this.backendService.get<HttpResponse<Unshortening[]>>(`/api/url-short/unshortening/${shortLinkId}/`, queryParams);
     }
 
-    getDateString(date: Date): string {
-        return [
-            date.getFullYear(),
-            ('0' + (date.getMonth() + 1)).slice(-2),
-            ('0' + date.getDate()).slice(-2)
-        ].join('-');
+    displayTime(date: string): string {
+        return format(parseISO(date), 'yyyy-MM-dd HH:mm:ss')
     }
 
     ngOnDestroy(): void {
@@ -52,3 +48,7 @@ export class ShortLinkStatisticsComponent implements OnInit {
     }
 
 }
+function fromISO(date: string): number | Date {
+    throw new Error('Function not implemented.');
+}
+
