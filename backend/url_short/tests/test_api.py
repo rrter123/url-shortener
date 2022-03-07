@@ -42,6 +42,17 @@ def test_get_unshortened_link(client):
 
 
 @pytest.mark.django_db
+def test_delete_unshortened_link(client):
+    test_link = 'https://test.com'
+    sl = ShortenedLink.objects.create(full_link=test_link)
+
+    response = client.delete(f'/api/url-short/link/{sl.id}/')
+
+    assert response.status_code == 204
+    assert ShortenedLink.objects.count() == 0
+
+
+@pytest.mark.django_db
 def test_get_404_unshortened_link(client):
     response = client.get('/api/url-short/link/non_existing/unshorten/')
     assert response.status_code == 404

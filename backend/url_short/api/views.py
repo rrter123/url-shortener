@@ -11,7 +11,7 @@ from url_short.api.serializers import (LinkUnshorteningSerializer,
 from url_short.models import LinkUnshortening, ShortenedLink
 
 
-class ShortenedLinkViewSet(mixins.CreateModelMixin, mixins.RetrieveModelMixin, viewsets.GenericViewSet):
+class ShortenedLinkViewSet(mixins.CreateModelMixin, mixins.RetrieveModelMixin, mixins.DestroyModelMixin, viewsets.GenericViewSet):
     serializer_class = ShortenedLinkSerializer
     queryset = ShortenedLink.objects.all()
 
