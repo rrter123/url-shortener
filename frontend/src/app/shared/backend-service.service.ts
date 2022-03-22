@@ -19,10 +19,8 @@ export class BackendService {
 
     public post<T>(url: string, data?: { [name: string]: any }): Observable<HttpResponse<T>> {
         const fullUrl = this.createBackendUrl(url);
-        console.log(fullUrl)
         const headers = new HttpHeaders({ 
             'Content-Type': 'application/json',
-            
         });
         const options = { headers: headers, observe: 'response' as 'body' }
         return this.http.post<HttpResponse<T>>(fullUrl, data, options)

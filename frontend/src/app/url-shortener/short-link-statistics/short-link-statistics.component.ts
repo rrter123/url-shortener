@@ -48,7 +48,5 @@ export class ShortLinkStatisticsComponent implements OnInit {
     }
 
 }
-function fromISO(date: string): number | Date {
-    throw new Error('Function not implemented.');
-}
+
 

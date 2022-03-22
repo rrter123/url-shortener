@@ -3,8 +3,6 @@ import uuid
 from .services import GenerateRandomStringService
 
 
-
-
 class ShortenedLink(models.Model):
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
